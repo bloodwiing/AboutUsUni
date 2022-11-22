@@ -1,0 +1,118 @@
+main {
+    width: 100vw;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+section {
+    position: relative;
+    max-width: var(--sectionSize);
+    display: flex;
+    width: calc( 100% - 50px );
+    padding: 50px 25px;
+    margin-bottom: 50px;
+}
+
+section::before {
+    content: "";
+    --background: inherit;
+    background: var(--background);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    height: 100%;
+    width: 100vw;
+    left: min( ( var(--sectionSize) - 100vw + 50px ) / 2, 0px );
+}
+
+h2.sectionTitle {
+    font-size: 2rem;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+section.sectionLight::before {
+    border-top: #fff1 2px solid;
+    border-bottom: #fff1 2px solid;
+    --background: var(--colorBlackLighter);
+}
+
+#about {
+    height: 400px;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#about::before {
+    -webkit-mask-image: -webkit-linear-gradient( 90deg, #0000, #000b 50% );
+    mask-image: linear-gradient( 0deg, #0000, #000b 50% );
+}
+
+#about > h1 {
+    font-size: 2.5rem;
+}
+
+#about > p {
+    max-width: 500px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+#team {
+    flex-flow: column nowrap;
+}
+
+#team > ul {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    justify-content: space-evenly;
+    gap: 20px;
+}
+
+#invite {
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+#invite > p {
+    width: 80%;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+#invite > button {
+    margin-top: 20px;
+}
+
+li.teamMember {
+    list-style: none;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+li.teamMember > img {
+    border-radius: 50%;
+    width: max( min( 20vw, 200px ), 150px );
+    aspect-ratio: 1 / 1;
+    box-shadow: #0002 0 10px 50px;
+    transition: var(--easeBouncy) .2s;
+}
+
+li.teamMember > img:hover {
+    transform: scale(1.1);
+    box-shadow: var(--accent) 0 0 80px;
+}
+
+li.teamMember > span.name {
+    font-family: var(--headingFont);
+    font-size: 1.4rem;
+    padding: .7em 0 .3em 0;
+    color: white;
+}
