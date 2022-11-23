@@ -63,9 +63,13 @@ button:active {
 }
 
 body {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 0;
     background-color: var(--colorBlack);
     color: white;
     overflow: hidden auto;
+    min-height: 100vh;
 }
 
 header {
@@ -75,7 +79,7 @@ header {
     position: fixed;
     top: 0;
     background-color: #0003;
-    border-bottom: #0002 2px solid;
+    border-bottom: #fff2 2px solid;
     align-items: center;
     justify-content: space-between;
     padding: 0 40px;
@@ -111,6 +115,10 @@ header {
 
 #navButtons > a:hover > li {
     background: #0002;
+}
+
+main {
+    flex: 1;
 }
 
 footer {
