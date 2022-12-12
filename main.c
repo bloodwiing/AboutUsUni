@@ -12,4 +12,6 @@ int main() {
     printf("%s", generateDynamicString(root));
 
     printf("\n%s\n", root->result);
+
+    freeDynamicElement(root);
 }

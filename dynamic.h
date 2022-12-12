@@ -20,7 +20,6 @@ typedef struct DynaElement {
     char *original;
 
     struct hashmap *key_map;
-    struct hashmap *elem_map;
 
     int placeholder_count;
     DynaPlaceholder *placeholders;
@@ -31,5 +30,6 @@ typedef struct DynaElement {
 DynaElement * createDynamicDocument(FILE *file);
 void putDynamicData(DynaElement *element, char *key, char *format, ...);
 char * generateDynamicString(DynaElement *element);
+void freeDynamicElement(DynaElement *element);
 
 #endif //HTML_DYNAMIC_H

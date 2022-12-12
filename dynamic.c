@@ -25,7 +25,6 @@ void addDynamicElementPlaceholder(DynaElement *element, char *placeholder, uint6
 
 void analyseDynamicElement(DynaElement *element) {
     char *cursor = element->original;
-    size_t a = strlen(element->original) + 1;
     char *final = calloc(strlen(element->original) + 1, 1);
 
     char *placeholder_start = NULL, *placeholder_end = element->original;
@@ -101,6 +100,7 @@ void analyseDynamicElement(DynaElement *element) {
     strncat(final, placeholder_end, position - last_placeholder);
 
     // save the element's new string
+    free(element->original);
     element->original = final;
 }
 
@@ -122,22 +122,22 @@ DynaElement *createDynamicDocument(FILE *file) {
 }
 
 void putDynamicData(DynaElement *element, char *key, char *format, ...) {
-    DynaKey *out = calloc(1, sizeof(DynaKey));
+    DynaKey out = {};
 
-    out->key = malloc(strlen(key) + 1);
-    strcpy(out->key, key);
+    out.key = malloc(strlen(key) + 1);
+    strcpy(out.key, key);
 
     va_list va;
     va_start(va, format);
     int count = vsnprintf(NULL, 0, format, va) + 1;
     va_end(va);
 
-    out->value = calloc(count, 1);
+    out.value = calloc(count, 1);
     va_start(va, format);
-    vsnprintf(out->value, count, format, va);
+    vsnprintf(out.value, count, format, va);
     va_end(va);
 
-    hashmap_set(element->key_map, out);
+    hashmap_set(element->key_map, &out);
 }
 
 char *generateDynamicString(DynaElement *element) {
@@ -173,4 +173,24 @@ char *generateDynamicString(DynaElement *element) {
     strncat(element->result, element->original + pos, size - pos);
 
     return element->result;
+}
+
+void freeDynamicElement(DynaElement *element) {
+    free(element->original);
+
+    size_t iter = 0;
+    void *item;
+    while (hashmap_iter(element->key_map, &iter, &item)) {
+        const DynaKey *key = item;
+        free(key->key);
+        free(key->value);
+    }
+    hashmap_free(element->key_map);
+
+    for (int i = 0; i < element->placeholder_count; i++)
+        free(element->placeholders[i].name);
+    free(element->placeholders);
+
+    free(element->result);
+    free(element);
 }
