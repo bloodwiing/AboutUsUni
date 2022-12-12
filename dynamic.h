@@ -24,6 +24,8 @@ typedef struct DynaElement {
 
     int placeholder_count;
     DynaPlaceholder *placeholders;
+
+    char *result;
 } DynaElement;
 
 DynaElement * createDynamicDocument(FILE *file);

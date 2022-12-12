@@ -141,6 +141,11 @@ void putDynamicData(DynaElement *element, char *key, char *format, ...) {
 }
 
 char *generateDynamicString(DynaElement *element) {
+    if (element->result != NULL) {
+        free(element->result);
+        element->result = NULL;
+    }
+
     uint64_t size = strlen(element->original) + 1;
 
     for (int i = 0; i < element->placeholder_count; i++) {
@@ -151,21 +156,21 @@ char *generateDynamicString(DynaElement *element) {
     }
 
     uint64_t pos = 0;
-    char *result = calloc(size, 1);
+    element->result = calloc(size, 1);
 
     for (int i = 0; i < element->placeholder_count; i++) {
         DynaPlaceholder placeholder = element->placeholders[i];
 
-        strncat(result, element->original + pos, placeholder.pos - pos);
+        strncat(element->result, element->original + pos, placeholder.pos - pos);
 
         DynaKey *key = hashmap_get(element->key_map, &(DynaKey) {.key = placeholder.name});
         if (key != NULL)
-            strcat(result, key->value);
+            strcat(element->result, key->value);
 
         pos = placeholder.pos;
     }
 
-    strncat(result, element->original + pos, size - pos);
+    strncat(element->result, element->original + pos, size - pos);
 
-    return result;
+    return element->result;
 }

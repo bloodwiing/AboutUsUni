@@ -10,4 +10,6 @@ int main() {
     putDynamicData(root, "flavour", "very nice innit bruv");
 
     printf("%s", generateDynamicString(root));
+
+    printf("\n%s\n", root->result);
 }
