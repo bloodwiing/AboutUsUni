@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{small_logo}" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>{company} - About Us</title>
+  </head>
+  <body style="--colorAccent: #{accent};">
+    <header>
+      <img src="{text_logo}" alt="logo" id="logo">
+      <div style="background-image: url('{small_logo}')" id="logoSmall"></div>
+      <ul id="navButtons">
+        <a href="#">
+          <li>Home</li>
+        </a>
+        <a href="#">
+          <li>Products</li>
+        </a>
+        <a href="#">
+          <li>Pricing</li>
+        </a>
+        <a href="#">
+          <li>About Us</li>
+        </a>
+      </ul>
+    </header>
+    <main>
+      <section id="about" style="--background: url('{splash}');">
+        <h1>Who are we?</h1>
+        <p>{description}</p>
+      </section>
+      <section id="team">
+        <h2 class="sectionTitle">Our Team</h2>
+        <ul>{team}</ul>
+      </section>
+      <section id="invite" class="sectionLight">
+        <h2 class="sectionTitle">Want to join us?</h2>
+        <p>We have careers plans open for experienced developers interested in working in a cozy environment</p>
+        <button>Career options</button>
+      </section>
+    </main>
+    <footer>
+      <div class="company">
+        <img src="{logo}" alt="{company}">
+        <span>© {company}, 2022</span>
+      </div>
+      <div id="links">
+        <ul>
+          <li class="linkHead">Support</li>
+          <a href="#">
+            <li>FAQ</li>
+          </a><a href="#">
+            <li>Forums</li>
+          </a><a href="#">
+            <li>Email</li>
+          </a><a href="#">
+            <li>Live chat</li>
+          </a>
+        </ul>
+        <ul>
+          <li class="linkHead">About</li>
+          <a href="#">
+            <li>Our story</li>
+          </a><a href="#">
+            <li>About us</li>
+          </a><a href="#">
+            <li>Careers</li>
+          </a><a href="#">
+            <li>Benefits</li>
+          </a>
+        </ul>
+        <ul>
+          <li class="linkHead">Legal</li>
+          <a href="#">
+            <li>Terms</li>
+          </a><a href="#">
+            <li>Privacy Policy</li>
+          </a>
+        </ul>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,356 @@
+/*
+About Us Page CSS
+BLOODWIING, Weirdoverse & ElMinor © 2022
+GITHUB: https://github.com/bloodwiing/AboutUsUni
+*/
+
+
+/*
+Copied from base.css of https://bloodwiing.github.io/AboutUsUni/
+*/
+
+:root {
+    --colorBlackDarker: #0c0c0e;
+    --colorBlack: #121215;
+    --colorBlackLighter: #18181d;
+    --colorContent: #aaa;
+    --colorAccent: #dd1f68;
+
+    --sectionSize: 1700px;
+
+    --contentFont: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --headingFont: 'Alexandria', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    --easeBouncy: cubic-bezier(.18,.89,.32,1.28);
+
+    font-size: 1rem;
+    font-family: var(--contentFont);
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--headingFont);
+    letter-spacing: .05em;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+a:link,
+a:hover,
+a:focus,
+a:visited {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+p,
+span {
+    color: var(--colorContent);
+}
+
+button {
+    padding: .5em 1.5em;
+    border-radius: 4px;
+    border: #fff1 2px solid;
+    background: #fff2;
+    font-family: var(--headingFont);
+    color: white;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    letter-spacing: .1em;
+    width: fit-content;
+    transition: var(--easeBouncy) .2s;
+    cursor: pointer;
+}
+
+button:hover,
+button:active {
+    padding: .5em 1.8em;
+    background: var(--colorAccent);
+    letter-spacing: .2em;
+}
+
+body {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 0;
+    background-color: var(--colorBlack);
+    color: white;
+    overflow: hidden auto;
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    height: 70px;
+    width: calc( 100vw - 80px );
+    position: fixed;
+    top: 0;
+    background-color: #0003;
+    border-bottom: #fff2 2px solid;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    backdrop-filter: blur(10px);
+    z-index: 1;
+}
+
+#logo {
+    height: 80%;
+    width: 250px;
+}
+
+#logoSmall {
+    display: none;
+    height: 80%;
+    aspect-ratio: 1 / 1;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#navButtons {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 5px;
+}
+
+#navButtons > a > li {
+    list-style: none;
+    padding: .7em 1em;
+    border-radius: 4px;
+}
+
+#navButtons > a:hover > li {
+    background: #0002;
+}
+
+
+/*
+Copied from style.css of https://bloodwiing.github.io/AboutUsUni/
+*/
+
+main {
+    flex: 1;
+}
+
+footer {
+    width: calc( 100vw - 80px );
+    background: var(--colorBlackDarker);
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    padding: 60px 40px;
+    gap: 50px;
+}
+
+footer > .company {
+    align-self: center;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+footer > .company > img {
+    width: min( 80vw, 200px );
+    margin-bottom: 10px;
+}
+
+#links {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 60px;
+}
+
+#links > ul {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+}
+
+#links > ul li {
+    list-style: none;
+}
+
+#links > ul li:not(.linkHead) {
+    color: var(--colorContent);
+}
+
+#links > ul li:not(.linkHead):hover {
+    color: white;
+}
+
+.linkHead {
+    font-size: 1.2rem;
+    font-family: var(--headingFont);
+    margin-bottom: 10px;
+    color: var(--colorAccent);
+}
+
+@media screen and (max-width: 800px) {
+    #navButtons {
+        height: 100%;
+        align-items: center;
+    }
+
+    #navButtons > a {
+        display: none;
+    }
+
+    #navButtons::after {
+        content: "";
+        height: 70%;
+        aspect-ratio: 1 / 1;
+        background: url('hamburger.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 60%;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    #navButtons:hover::after {
+        background: url('hamburger.svg') #fff1;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 60%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #logo {
+        display: none;
+    }
+
+    #logoSmall {
+        display: block;
+    }
+
+    #links > ul {
+        flex: 1;
+        min-width: max-content;
+        align-items: center;
+    }
+}
+
+main {
+    width: 100vw;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+section {
+    position: relative;
+    max-width: var(--sectionSize);
+    display: flex;
+    width: calc( 100% - 50px );
+    padding: 50px 25px;
+    margin-bottom: 50px;
+}
+
+section::before {
+    content: "";
+    --background: inherit;
+    background: var(--background);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    height: 100%;
+    width: 100vw;
+    left: min( ( var(--sectionSize) - 100vw + 50px ) / 2, 0px );
+}
+
+h2.sectionTitle {
+    font-size: 2rem;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+section.sectionLight::before {
+    border-top: #fff1 2px solid;
+    border-bottom: #fff1 2px solid;
+    --background: var(--colorBlackLighter);
+}
+
+#about {
+    height: 400px;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#about::before {
+    -webkit-mask-image: -webkit-linear-gradient( 90deg, #0000, #0009 50% );
+    mask-image: linear-gradient( 0deg, #0000, #0009 50% );
+}
+
+#about > h1 {
+    font-size: 2.5rem;
+}
+
+#about > p {
+    max-width: 500px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+#team {
+    flex-flow: column nowrap;
+}
+
+#team > ul {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    justify-content: space-evenly;
+    gap: 20px;
+}
+
+#invite {
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+#invite > p {
+    width: 80%;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+#invite > button {
+    margin-top: 20px;
+}
+
+li.teamMember {
+    list-style: none;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+li.teamMember > img {
+    border-radius: 50%;
+    width: max( min( 20vw, 200px ), 150px );
+    aspect-ratio: 1 / 1;
+    box-shadow: #0002 0 10px 50px;
+    transition: var(--easeBouncy) .2s;
+}
+
+li.teamMember > img:hover {
+    transform: scale(1.1);
+    box-shadow: var(--accent) 0 0 80px;
+}
+
+li.teamMember > span.name {
+    font-family: var(--headingFont);
+    font-size: 1.4rem;
+    padding: .7em 0 .3em 0;
+    color: white;
+}
