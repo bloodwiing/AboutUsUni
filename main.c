@@ -33,7 +33,7 @@ int main() {
             clearStreamBuffer();
         }
         if (team_size <= 0) {
-            printf(" -- ! Invalid Input ! Must be a positive integer");
+            printf("! Invalid Input ! Must be a positive integer\n");
             printf("\nEnter the amount of team members (positive integer):\n> ");
         }
     }
@@ -107,6 +107,10 @@ int main() {
     // Close both
     fclose(source);
     fclose(target);
+
+    // Final message
+    printf("\n\n---\nYour website has been generated!\n");
+    printf("Please check the \"./out/\" folder");
 }
 
 void promptUserData(DynaElement *element, char *key, char *prompt, int max_size) {
