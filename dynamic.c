@@ -186,8 +186,9 @@ DynaElement *createDynamicDocument(FILE *file) {
     long size = ftell(file);
     fseek(file, 0L, SEEK_SET);
 
-    // Allocate the string by how big the file is and put all file contents to it
+    // Allocate the string by how big the file is
     out->original = calloc(size + 1, 1);
+    // Using fread() instead of a fgets() loop to get all file contents
     fread(out->original, 1, size, file);
 
     // Begin analysing for Placeholders and generate a de-formatted string
@@ -200,6 +201,10 @@ DynaElement *createDynamicDocument(FILE *file) {
 }
 
 void putDynamicData(DynaElement *element, char *key, char *format, ...) {
+    // NULL Check
+    if (element == NULL)
+        return;
+
     // Init the key on this scope (its value gets copied, so this may as well be discarded after the function)
     DynaKey out = {};
 
@@ -283,6 +288,10 @@ char *generateDynamicString(DynaElement *element) {
 }
 
 void freeDynamicElement(DynaElement *element) {
+    // NULL Check
+    if (element == NULL)
+        return;
+
     // Free the de-formatted string
     free(element->original);
 
