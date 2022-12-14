@@ -12,6 +12,28 @@ int main() {
     DynaElement *root = createDynamicDocument(file);
     fclose(file);
 
+    // Light / Dark mode
+    printf("\nDo you want the page to be in [L] light or [D] dark theme?\n(Please enter only one symbol matching the theme name)\n> ");
+    char theme = 0;
+    while (!theme) {
+        if (scanf("%c", &theme) != 1) {
+            // mark as error
+            theme = 0;
+            // clear buffer
+            clearStreamBuffer();
+        }
+        if (!theme || (theme != 'l' && theme != 'L' && theme != 'd' && theme != 'D')) {
+            // mark as error
+            theme = 0;
+            printf("! Invalid Input ! Must be L or D\n");
+            printf("\nDo you want the page to be in [L] light or [D] dark theme?\n(Please enter only one symbol matching the theme name)\n> ");
+        }
+    }
+    clearStreamBuffer();
+
+    if (theme == 'l' || theme == 'L')
+        putDynamicData(document, "theme", "data-light-mode");
+
     // Data request
     promptUserData(root, "company", "Company Name", 20);
     promptUserData(root, "accent", "Page Accent colour (please use the following HEX format: RRGGBB - do NOT add a #)", 20);
