@@ -2,6 +2,10 @@
 
 A tool to replace placeholders based on a specific syntax in the file's contents.
 
+**IMPORTANT!**<br>
+This explains every aspect of the library in _detail_.<br>
+For the tech-savvy developers, it is recommended to check out and play around with the [example](#example) and to only check other sections if questions arise.
+
 ## Table of Contents
 * [Terms](#terms)
 * [Concept](#concept)
@@ -111,9 +115,9 @@ DynaElement *document = createDynamicDocument(file);
 fclose(file);
 
 putDynamicData(document, "title", "My Site");
-putDynamicData(document, "description", "a float: %.2f", 1f/3);
+putDynamicData(document, "description", "a float: %.2f", 1.0/3);
 
-printf(generateDynamicString(document));
+printf("%s", generateDynamicString(document));
 
 freeDynamicElement(document);  // remember to always free up memory that is no longer in use
 ```
