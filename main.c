@@ -2,6 +2,9 @@
 #include <string.h>
 #include <stdlib.h>
 
+#define MAX_LINK_SIZE 400
+#define MAX_RGB_SIZE 8
+
 void promptUserData(DynaElement *element, char *key, char *prompt, int max_size);
 void createDirectory(char *name);
 void clearStreamBuffer();
@@ -9,7 +12,7 @@ void clearStreamBuffer();
 int main() {
     // Dynamic HTML Element (for root)
     FILE *file = fopen("./templates/index.html", "r");
-    DynaElement *root = createDynamicDocument(file);
+    DynaElement *document = createDynamicDocument(file);
     fclose(file);
 
     // Light / Dark mode
@@ -35,14 +38,14 @@ int main() {
         putDynamicData(document, "theme", "data-light-mode");
 
     // Data request
-    promptUserData(root, "company", "Company Name", 20);
-    promptUserData(root, "accent", "Page Accent colour (please use the following HEX format: RRGGBB - do NOT add a #)", 20);
-    promptUserData(root, "description", "Company Description", 200);
-    promptUserData(root, "splash", "Link to the image of the Splash shown in the background (.png)", 150);
+    promptUserData(document, "company", "Company Name", 20);
+    promptUserData(document, "accent", "Page Accent colour (please use the following HEX format: RRGGBB - do NOT add a #)", MAX_RGB_SIZE);
+    promptUserData(document, "description", "Company Description", 200);
+    promptUserData(document, "splash", "Link to the image of the Splash shown in the background (.png)", MAX_LINK_SIZE);
 
-    promptUserData(root, "logo", "Link to the image of the Logo, where the Icon and Text are visible (.svg, .png)", 150);
-    promptUserData(root, "text_logo", "Link to the image of the Logo, where ONLY Text is visible (.svg, .png)", 150);
-    promptUserData(root, "small_logo", "Link to the image of the Logo, where ONLY the Icon is visible (.svg, .png)", 150);
+    promptUserData(document, "logo", "Link to the image of the Logo, where the Icon and Text are visible (.svg, .png)", MAX_LINK_SIZE);
+    promptUserData(document, "text_logo", "Link to the image of the Logo, where ONLY Text is visible (.svg, .png)", MAX_LINK_SIZE);
+    promptUserData(document, "small_logo", "Link to the image of the Logo, where ONLY the Icon is visible (.svg, .png)", MAX_LINK_SIZE);
 
     // Team size
     printf("\nEnter the amount of team members (positive integer):\n> ");
@@ -79,8 +82,8 @@ int main() {
         // Fill the data
         promptUserData(member, "name", "Name of the Team Member", 80);
         promptUserData(member, "role", "The Role of the Team Member", 50);
-        promptUserData(member, "avatar", "Link to the image of the member, such as an avatar or portrait (.svg, .png)", 150);
-        promptUserData(member, "colour", "Member Accent colour (please use the following HEX format: RRGGBB - do NOT add a #)", 150);
+        promptUserData(member, "avatar", "Link to the image of the member, such as an avatar or portrait (.svg, .png)", MAX_LINK_SIZE);
+        promptUserData(member, "colour", "Member Accent colour (please use the following HEX format: RRGGBB - do NOT add a #)", MAX_RGB_SIZE);
 
         // Save new Team HTML Size
         team_html_size += strlen(generateDynamicString(member)) + 1;
@@ -97,7 +100,7 @@ int main() {
     fclose(file);
 
     // Finally add the Team HTML as data and free the builder
-    putDynamicData(root, "team", team_html);
+    putDynamicData(document, "team", team_html);
     free(team_html);
 
     // Create the "./out" directory if missing
@@ -105,11 +108,11 @@ int main() {
 
     // Save the generated HTML
     FILE *result = fopen("./out/index.html", "w");
-    fputs(generateDynamicString(root), result);
+    fputs(generateDynamicString(document), result);
     fclose(result);
 
     // Free up memory
-    freeDynamicElement(root);
+    freeDynamicElement(document);
 
     // Ready CSS copy
     FILE *source = fopen("./style.css", "r");
@@ -139,15 +142,26 @@ void promptUserData(DynaElement *element, char *key, char *prompt, int max_size)
     printf("\nEnter %s:\n> ", prompt);
 
     char *value = calloc(max_size + 1, 1);
-    fgets(value, max_size, stdin);
+    fgets(value, max_size + 1, stdin);
+
+    // remove any overflowing symbols
+    if (value[max_size - 1])
+        clearStreamBuffer();
+
     // trailing '\n' trimming
     value[strcspn(value, "\n")] = 0;
 
+    // null-terminate string (in case it is not)
+    value[max_size - 1] = 0;
+
     putDynamicData(element, key, "%s", value);
+
     free(value);
 }
 
 #ifdef __linux__
+#include <sys/stat.h>
+
 void createDirectory(char *name) {
     mkdir(name, 0775);
 }
