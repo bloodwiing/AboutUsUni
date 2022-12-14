@@ -355,3 +355,62 @@ li.teamMember > span.name {
     padding: .7em 0 .3em 0;
     color: white;
 }
+
+
+/*
+Copied from light.css of https://bloodwiing.github.io/AboutUsUni/
+*/
+
+body[data-light-mode] {
+    color: #090813;
+    --colorBlackDarker: #ffffff;
+    --colorBlack: #eeeef2;
+    --colorBlackLighter: #fff;
+    --colorContent: #35373e;
+}
+
+body[data-light-mode] a:link,
+body[data-light-mode] a:hover,
+body[data-light-mode] a:focus,
+body[data-light-mode] a:visited {
+    color: black;
+}
+
+body[data-light-mode] header {
+    background-color: #fff2;
+}
+
+body[data-light-mode] #about::before {
+    mask-image: linear-gradient( 0deg, #0000, #000a 50% );
+}
+
+body[data-light-mode] li.teamMember > span.name {
+    color: black;
+}
+
+body[data-light-mode] button {
+    border: #0001 2px solid;
+    background: #222;
+    color: white;
+}
+
+body[data-light-mode] button:hover,
+body[data-light-mode] button:active {
+    background: var(--colorAccent);
+}
+
+body[data-light-mode] footer {
+    background: var(--colorAccent);
+}
+
+body[data-light-mode] .linkHead {
+    color: white;
+}
+
+body[data-light-mode] #links > ul li:not(.linkHead) {
+    color: black;
+}
+
+body[data-light-mode] footer .company > span {
+    color: #000c;
+}
