@@ -310,7 +310,7 @@ section.sectionLight::before {
     flex-flow: row wrap;
     width: 100%;
     justify-content: space-evenly;
-    gap: 20px;
+    gap: 20px max(20px, min(3vw, 100px));
 }
 
 #invite {
