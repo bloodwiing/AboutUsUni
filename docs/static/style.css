@@ -109,6 +109,7 @@ li.teamMember > img {
     aspect-ratio: 1 / 1;
     box-shadow: #0002 0 10px 50px;
     transition: var(--easeBouncy) .2s;
+    object-fit: cover;
 }
 
 li.teamMember > img:hover {
