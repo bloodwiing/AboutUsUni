@@ -111,9 +111,9 @@ DynaElement *document = createDynamicDocument(file);
 fclose(file);
 
 putDynamicData(document, "title", "My Site");
-putDynamicData(document, "description", "a float: %.2f", 1f/3);
+putDynamicData(document, "description", "a float: %.2f", 1.0/3);
 
-printf(generateDynamicString(document));
+printf("%s", generateDynamicString(document));
 
 freeDynamicElement(document);  // remember to always free up memory that is no longer in use
 ```
