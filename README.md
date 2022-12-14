@@ -16,6 +16,11 @@ This whole project was done by
 * **Eimantas Braukyla** aka [ElMinor](https://github.com/EIMinor) (Facilitator and Exhibitor)
 * **Martynas Šalčiūnas** aka [wendroners](https://github.com/wendroners) (Critic and Designer)
 
+## Examples
+The following were the result of using the program to generate the website:
+* [cookie website](https://bloodwiing.github.io/AboutUsUni/examples/choco/)
+* [eSports website](https://bloodwiing.github.io/AboutUsUni/examples/gaming/)
+
 ### Copyright
 Donatas Kirda, Eimantas Braukyla, Martynas Šalčiūnas © 2022
 

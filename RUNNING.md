@@ -2,6 +2,13 @@
 
 This page explains how you can use the current "About Us" website template generator to create a similar website as one publicly displayed on GitHub pages: https://bloodwiing.github.io/AboutUsUni/
 
+## Examples
+The following were the result of using the program to generate the website:
+* [cookie website](https://bloodwiing.github.io/AboutUsUni/examples/choco/)
+* [eSports website](https://bloodwiing.github.io/AboutUsUni/examples/gaming/)
+
+*This file will explain how you can make your own!*
+
 ## Downloading
 To download the project, you can either go to the main page of the GitHub repository (https://github.com/bloodwiing/AboutUsUni), click the green `Code` button and then press on `Download ZIP`. Don't forget to extract it.<br>
 Alternatively you can download the project via the `git` command line:
